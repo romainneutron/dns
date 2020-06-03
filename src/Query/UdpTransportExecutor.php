@@ -98,6 +98,7 @@ final class UdpTransportExecutor implements ExecutorInterface
      */
     public function __construct($nameserver, LoopInterface $loop)
     {
+        var_dump('construct udp transport executor with '.$nameserver);
         if (\strpos($nameserver, '[') === false && \substr_count($nameserver, ':') >= 2 && \strpos($nameserver, '://') === false) {
             // several colons, but not enclosed in square brackets => enclose IPv6 address in square brackets
             $nameserver = '[' . $nameserver . ']';
