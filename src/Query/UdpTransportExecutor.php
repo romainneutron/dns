@@ -127,6 +127,7 @@ final class UdpTransportExecutor implements ExecutorInterface
             ));
         }
 
+        var_dump('Opening stream socket '.$this->nameserver);
         // UDP connections are instant, so try connection without a loop or timeout
         $socket = @\stream_socket_client($this->nameserver, $errno, $errstr, 0);
         if ($socket === false) {
@@ -138,6 +139,7 @@ final class UdpTransportExecutor implements ExecutorInterface
 
         // set socket to non-blocking and immediately try to send (fill write buffer)
         \stream_set_blocking($socket, false);
+        var_dump($queryData);
         \fwrite($socket, $queryData);
 
         $loop = $this->loop;
